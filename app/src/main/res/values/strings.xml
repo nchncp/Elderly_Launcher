@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Launcher</string>
+    <string name="app_name">Elderly Launcher</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="show_apps">Show Apps</string>
@@ -38,4 +38,6 @@
     <string name="to">Username</string>
     <string name="sms_to">To :</string>
     <string name="send">SEND</string>
+    <string name="reply">REPLY</string>
+    <string name="okay">OKAY</string>
 </resources>
