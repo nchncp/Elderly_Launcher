@@ -14,7 +14,7 @@
         android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen">
         <activity
             android:name=".HomeActivity"
-            android:label="Launcher"
+            android:label="Elderly Launcher"
             android:launchMode="singleTask"
             android:stateNotNeeded="true"
             android:screenOrientation="landscape"

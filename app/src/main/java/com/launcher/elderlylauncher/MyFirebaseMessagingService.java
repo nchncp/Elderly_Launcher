@@ -97,5 +97,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
 
         //pop-up
+        Intent dialogIntent = new Intent(this, HomeActivity.class);
+        dialogIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        dialogIntent.putExtra("dialog", "Message from Server");
+        startActivity(dialogIntent);
     }
 }

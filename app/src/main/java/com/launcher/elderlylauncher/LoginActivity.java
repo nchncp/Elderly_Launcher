@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -114,6 +116,16 @@ public class LoginActivity extends Activity {
                     editor.putString("FName", strFName);
                     editor.putString("LName", strLName);
                     editor.commit();
+
+                    final String strToken = FirebaseInstanceId.getInstance().getToken();
+
+                    url = "http://dlab.sit.kmutt.ac.th/el_launcher/token.php";
+                    params = new ArrayList<NameValuePair>();
+                    params.add(new BasicNameValuePair("strID", strAccountID));
+                    params.add(new BasicNameValuePair("strIDToken", strToken));
+
+                    resultServer = getHttpPost(url, params);
+                    Log.d("555", resultServer);
 
                     Toast.makeText(LoginActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
                     Intent newActivity = new Intent(LoginActivity.this, HomeActivity.class);
