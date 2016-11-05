@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_3"
+                android:background="@drawable/cha_3"
                 android:onClick="showChannel3"/>
 
             <ImageButton
@@ -53,7 +53,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_5"
+                android:background="@drawable/cha_5"
                 android:onClick="showChannel5"/>
 
             <ImageButton
@@ -63,7 +63,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_thairath"
+                android:background="@drawable/cha_thairath"
                 android:onClick="showChannelThairath"/>
 
             <ImageButton
@@ -73,7 +73,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_amarin"
+                android:background="@drawable/cha_amarin"
                 android:onClick="showChannelAmarin"/>
 
         </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_now"
+                android:background="@drawable/cha_now"
                 android:onClick="showChannelNow"/>
 
             <ImageButton
@@ -102,7 +102,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_new"
+                android:background="@drawable/cha_new"
                 android:onClick="showChannelNew"/>
 
             <ImageButton
@@ -112,7 +112,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/channel_bright"
+                android:background="@drawable/cha_bright"
                 android:onClick="showChannelBright"/>
 
             <FrameLayout

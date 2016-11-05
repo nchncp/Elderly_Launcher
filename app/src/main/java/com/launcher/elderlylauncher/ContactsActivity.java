@@ -1,6 +1,7 @@
 package com.launcher.elderlylauncher;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -22,6 +25,8 @@ public class ContactsActivity extends Activity {
 
     private ListView listView;
     private Button findContact;
+
+    final List<ContactBook> listPhoneBook = new ArrayList<ContactBook>();
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -48,11 +53,18 @@ public class ContactsActivity extends Activity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ContactsActivity.this, MessagesSend.class);
+                intent.putExtra("Reciever", listPhoneBook.get(position).getmUsername());
+                startActivityForResult(intent, 9998);
+            }
+        });
     }
 
     private void refreshContact() {
         //Add Contact
-        List<ContactBook> listPhoneBook = new ArrayList<ContactBook>();
 //        listPhoneBook.add(new ContactBook(BitmapFactory.decodeResource(getResources(), R.drawable.c_avatar0), "Daugther", "Varistha", "Thato", "098-765-4321", "daugther@gmail.com"));
 //        listPhoneBook.add(new ContactBook(BitmapFactory.decodeResource(getResources(), R.drawable.c_avatar1), "Son", "Anyakrit", "Thato", "098-765-4321", "son@gmail.com"));
 //        listPhoneBook.add(new ContactBook(BitmapFactory.decodeResource(getResources(), R.drawable.c_avatar2), "GrandDaughter", "Pahfun", "Thato", "098-765-4321", "grand_daugther@gmail.com"));

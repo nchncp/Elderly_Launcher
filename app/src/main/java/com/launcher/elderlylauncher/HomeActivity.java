@@ -123,6 +123,7 @@ public class HomeActivity extends Activity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         final String AccountID = sharedPreferences.getString("AccountID", "");
+        final String Username = sharedPreferences.getString("Username", "");
         final String FName = sharedPreferences.getString("FName", "");
         final String LName = sharedPreferences.getString("LName", "");
 

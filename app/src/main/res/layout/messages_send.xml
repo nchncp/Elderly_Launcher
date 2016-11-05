@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="#374045"
     android:gravity="center"
-    android:orientation="horizontal"
-    android:layout_gravity="center">
+    android:orientation="horizontal">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,46 +33,78 @@
 
             <LinearLayout
                 android:id="@+id/box"
-                android:layout_below="@+id/messageSend"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@id/messageSend"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/sms_to"
+                        android:layout_marginStart="50dp"
+                        android:text="@string/sms_from"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#212121" />
+                        android:textColor="#212121"
+                        android:gravity="end"/>
 
-                    <EditText
-                        android:id="@+id/to"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/from"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="50dp"
-                        android:hint="@string/to"
+                        android:paddingStart="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:hint="@string/username"
+                        android:textColor="#212121"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="50dp"
+                        android:text="@string/sms_to"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="#212121"
+                        android:gravity="end"/>
+
+                    <Button
+                        android:id="@+id/to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:hint="@string/selectFromContact"
                         android:textColor="#212121" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="50dp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginStart="50dp"
                         android:text="@string/sms_title"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#212121" />
+                        android:textColor="#212121"
+                        android:gravity="end"/>
 
                     <EditText
                         android:id="@+id/messageTitle"
@@ -85,13 +118,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:gravity="top">
 
                     <TextView
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:gravity="end"
                         android:layout_marginStart="50dp"
-                        android:layout_gravity="center_vertical"
                         android:text="@string/sms_detail"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="#212121" />
@@ -100,10 +135,12 @@
                         android:id="@+id/messageField"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:inputType="textMultiLine"
-                        android:ems="10"
+                        android:layout_gravity="top"
                         android:layout_marginEnd="50dp"
+                        android:ems="10"
+                        android:gravity="top"
                         android:hint="@string/message"
+                        android:inputType="textMultiLine"
                         android:textColor="#212121" />
 
                 </LinearLayout>
@@ -113,17 +150,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_below="@+id/box"
                 android:layout_centerInParent="true"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btnSend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/send"/>
+                    android:text="@string/send" />
 
                 <Button
                     android:id="@+id/btnCancel"
@@ -131,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:onClick="backMessages"
-                    android:text="@string/cancel"/>
+                    android:text="@string/cancel" />
 
             </LinearLayout>
 

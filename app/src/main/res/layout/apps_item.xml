@@ -17,8 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/icon"
+        android:layout_below="@id/icon"
         android:paddingLeft="10dp"
+        android:textColor="#212121"
         android:hint="@string/name"
         android:gravity="center"/>
 

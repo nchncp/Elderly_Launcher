@@ -42,4 +42,6 @@
     <string name="okay">OKAY</string>
     <string name="find">Find People</string>
     <string name="search">Search</string>
+    <string name="selectFromContact">Select from Contact</string>
+    <string name="sms_from">From :</string>
 </resources>

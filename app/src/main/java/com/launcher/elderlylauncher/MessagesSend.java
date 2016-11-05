@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,9 +27,10 @@ import java.util.Map;
  */
 public class MessagesSend extends Activity {
 
-    EditText Topic, Message, RecieveUser;
-    Button btnSend;
+    EditText Topic, Message;
+    Button btnRecieve, btnSend;
     RequestQueue requestQueue;
+    TextView From;
     String insertUrl = "http://dlab.sit.kmutt.ac.th/el_launcher/sendMessage.php";
 
     @Override
@@ -37,11 +40,28 @@ public class MessagesSend extends Activity {
 
         Topic = (EditText)findViewById(R.id.messageTitle);
         Message = (EditText)findViewById(R.id.messageField);
-        RecieveUser = (EditText)findViewById(R.id.to);
+        btnRecieve = (Button)findViewById(R.id.to);
         btnSend = (Button)findViewById(R.id.btnSend);
+        From = (TextView)findViewById(R.id.from);
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         final String strAccountID = sharedPreferences.getString("AccountID", "");
+        final String strUsername = sharedPreferences.getString("Username", "");
+
+        From.setText(strUsername);
+
+        btnRecieve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MessagesSend.this, ContactsActivity.class);
+                startActivityForResult(i, 0000);
+            }
+        });
+
+        Intent intent= getIntent();
+        final String reciever = intent.getStringExtra("Reciever");
+
+        btnRecieve.setText(reciever);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
@@ -64,7 +84,7 @@ public class MessagesSend extends Activity {
                         Map <String,String> parameters = new HashMap<String, String>();
                         parameters.put("Topic", Topic.getText().toString());
                         parameters.put("Message", Message.getText().toString());
-                        parameters.put("RecieveUser", RecieveUser.getText().toString());
+                        parameters.put("RecieveUser", reciever);
                         parameters.put("AccountID", strAccountID);
                         parameters.put("DeliveryType", "1");
 
