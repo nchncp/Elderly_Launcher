@@ -68,7 +68,7 @@
                 android:orientation="horizontal">
 
                 <ListView
-                    android:id="@+id/listReadMessages"
+                    android:id="@+id/listContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
