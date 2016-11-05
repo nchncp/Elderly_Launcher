@@ -38,13 +38,7 @@
             android:orientation="horizontal"
             android:layout_marginBottom="5dp" >
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
+            <ImageButton
                 android:id="@+id/photosShortcut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,16 +46,25 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="0.1"
-                android:background="@drawable/photos" />
+                android:background="@drawable/btn_photo" />
 
-            <FrameLayout
+            <ImageButton
                 android:id="@+id/videosShortcut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="0.1"
-                android:background="@drawable/videos" />
+                android:background="@drawable/btn_video" />
+
+            <ImageButton
+                android:id="@+id/audiosShortcut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.1"
+                android:background="@drawable/btn_audio" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -76,37 +79,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
-            android:orientation="horizontal" >
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.1" />
-
-            <ImageButton
-                android:id="@+id/audiosShortcut"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.1"
-                android:background="@drawable/audios" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.1" />
-
-        </LinearLayout>
+            android:orientation="horizontal"  />
 
     </LinearLayout>
 

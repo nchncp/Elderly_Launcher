@@ -1,7 +1,9 @@
 package com.launcher.elderlylauncher;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,9 @@ public class MessagesSend extends Activity {
         RecieveUser = (EditText)findViewById(R.id.to);
         btnSend = (Button)findViewById(R.id.btnSend);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        final String strAccountID = sharedPreferences.getString("AccountID", "");
+
         requestQueue = Volley.newRequestQueue(getApplicationContext());
 
         btnSend.setOnClickListener(new View.OnClickListener() {
@@ -57,9 +62,11 @@ public class MessagesSend extends Activity {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         Map <String,String> parameters = new HashMap<String, String>();
-                        parameters.put("Topic",Topic.getText().toString());
-                        parameters.put("Message",Message.getText().toString());
-                        parameters.put("RecieveUser",RecieveUser.getText().toString());
+                        parameters.put("Topic", Topic.getText().toString());
+                        parameters.put("Message", Message.getText().toString());
+                        parameters.put("RecieveUser", RecieveUser.getText().toString());
+                        parameters.put("AccountID", strAccountID);
+                        parameters.put("DeliveryType", "1");
 
                         return parameters;
                     }
@@ -67,16 +74,14 @@ public class MessagesSend extends Activity {
 
                 requestQueue.add(request);
 
-                Intent i = new Intent(MessagesSend.this, MessagesActivity.class);
-                startActivity(i);
+                finish();
             }
         });
 
     }
 
-    public void showMessages(View v) {
-        Intent i = new Intent(this, MessagesActivity.class);
-        startActivity(i);
+    public void backMessages(View v) {
+        finish();
     }
 
 }

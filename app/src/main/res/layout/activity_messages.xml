@@ -37,34 +37,34 @@
             android:orientation="horizontal"
             android:weightSum="4">
 
-            <FrameLayout
+            <ImageButton
                 android:id="@+id/sendShortcut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/read"
+                android:background="@drawable/btn_send"
                 android:onClick="showSendMessage" />
 
-            <FrameLayout
+            <ImageButton
                 android:id="@+id/unreadShortcut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/unread"
+                android:background="@drawable/btn_unread"
                 android:onClick="showUnreadMessages" />
 
-            <FrameLayout
+            <ImageButton
                 android:id="@+id/readShortcut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/read"
+                android:background="@drawable/btn_read"
                 android:onClick="showReadMessages" />
 
             <FrameLayout

@@ -4,7 +4,7 @@
     android:id="@+id/layout_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#374045"
+    android:background="#4d4d4d"
     android:orientation="horizontal"
     tools:context=".HomeActivity">
 
@@ -14,19 +14,20 @@
         android:orientation="vertical"
         android:weightSum="9">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:layout_weight="8">
+            android:layout_weight="8"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:id="@+id/avatar"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/grandpa"
                 android:onClick="showLogin" />
 
@@ -34,10 +35,8 @@
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/avatar"
-                android:hint="@string/fname"
+                android:layout_marginEnd="10dp"
+                android:hint="@string/name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="40sp" />
 
@@ -45,29 +44,20 @@
                 android:id="@+id/txtLast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="2dp"
-                android:layout_toRightOf="@id/txtName"
-                android:hint="@string/lname"
+                android:hint="@string/name"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="40sp" />
 
-            <!--<Button-->
-            <!--android:id="@+id/btnPopup"-->
-            <!--android:layout_toRightOf="@+id/txtLast"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/popup"-->
-            <!--android:textAppearance="?android:attr/textAppearanceSmall"/>-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
 
             <TextClock
                 android:id="@+id/textClock"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_toStartOf="@+id/all_apps"
+                android:layout_marginEnd="10dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textSize="40sp" />
 
@@ -75,13 +65,11 @@
                 android:id="@+id/all_apps"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/search"
                 android:onClick="showApps" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,9 +94,9 @@
                     android:id="@+id/tvShortcut"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/tv"
+                    android:background="@drawable/btn_tv"
                     android:onClick="showTV" />
 
 
@@ -118,7 +106,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/messages2"
+                    android:background="@drawable/btn_message"
                     android:onClick="showMessages" />
 
             </LinearLayout>
@@ -137,7 +125,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/contacts"
+                    android:background="@drawable/btn_contact"
                     android:onClick="showContacts" />
 
                 <ImageButton
@@ -147,7 +135,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/calender"
+                    android:background="@drawable/btn_calendar"
                     android:onClick="showCalendar" />
 
                 <ImageButton
@@ -157,7 +145,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/gallery2"
+                    android:background="@drawable/btn_gallery"
                     android:onClick="showGallery" />
 
                 <ImageButton
@@ -166,7 +154,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:background="@drawable/settings"
+                    android:background="@drawable/btn_setting"
                     android:onClick="showSettings" />
 
             </LinearLayout>

@@ -56,6 +56,12 @@ public class ContactBookAdapter extends BaseAdapter {
         TextView tvName = (TextView)arg1.findViewById(R.id.tvName);
         tvName.setText(entry.getmName());
 
+        TextView tvLName = (TextView)arg1.findViewById(R.id.tvLName);
+        tvLName.setText(entry.getmLName());
+
+        TextView tvUsername = (TextView)arg1.findViewById(R.id.tvUsername);
+        tvUsername.setText(entry.getmUsername());
+
         TextView tvPhone = (TextView)arg1.findViewById(R.id.tvPhone);
         tvPhone.setText(entry.getmPhone());
 

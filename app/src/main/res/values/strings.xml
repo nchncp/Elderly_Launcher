@@ -40,4 +40,6 @@
     <string name="send">SEND</string>
     <string name="reply">REPLY</string>
     <string name="okay">OKAY</string>
+    <string name="find">Find People</string>
+    <string name="search">Search</string>
 </resources>

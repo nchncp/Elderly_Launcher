@@ -72,7 +72,7 @@ public class LoginActivity extends Activity {
                 params.add(new BasicNameValuePair("strUser", txtUser.getText().toString()));
                 params.add(new BasicNameValuePair("strPass", txtPass.getText().toString()));
 
-                String resultServer = getHttpPost(url, params);
+                String resultServer = Util.getHttpPost(url, params);
 
                 /*** Default Value ***/
                 String strStatusID = "0";
@@ -124,10 +124,11 @@ public class LoginActivity extends Activity {
                     params.add(new BasicNameValuePair("strID", strAccountID));
                     params.add(new BasicNameValuePair("strIDToken", strToken));
 
-                    resultServer = getHttpPost(url, params);
+                    resultServer = Util.getHttpPost(url, params);
                     Log.d("555", resultServer);
 
                     Toast.makeText(LoginActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
+                    
                     Intent newActivity = new Intent(LoginActivity.this, HomeActivity.class);
                     newActivity.putExtra("AccountID", strAccountID);
                     newActivity.putExtra("Username", strUsername);
@@ -137,35 +138,6 @@ public class LoginActivity extends Activity {
             }
 
         });
-    }
-
-    public String getHttpPost(String url, List<NameValuePair> params) {
-        StringBuilder str = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpPost httpPost = new HttpPost(url);
-
-        try {
-            httpPost.setEntity(new UrlEncodedFormEntity(params));
-            HttpResponse response = client.execute(httpPost);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) { // Status OK
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    str.append(line);
-                }
-            } else {
-                Log.e("Log", "Failed to download result..");
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return str.toString();
     }
 
     public void showRegister(View v) {

@@ -74,14 +74,12 @@ public class RegisterActivity extends Activity {
 
                 requestQueue.add(request);
 
-                Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(i);
+                finish();
             }
         });
     }
 
     public void showLogin(View v) {
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
+        finish();
     }
 }
