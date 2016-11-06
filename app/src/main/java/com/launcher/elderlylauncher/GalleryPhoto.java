@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by nicha on 9/27/16.
  */
@@ -40,7 +42,7 @@ public class GalleryPhoto extends Activity {
 
                 // set the custom dialog components - text, image and button
                 ImageView image = (ImageView) dialog.findViewById(R.id.image);
-                image.setImageResource(R.drawable.elderly_launcher);
+                Picasso.with(GalleryPhoto.this).load(urls[position]).into(image);
 
                 Button close = (Button) dialog.findViewById(R.id.btnClose);
                 // if button is clicked, close the custom dialog
