@@ -2,96 +2,115 @@ package com.launcher.elderlylauncher;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by nicha on 9/27/16.
  */
 
 public class GalleryPhoto extends Activity {
-    private GalleryPhotoAdapter mAdapter;
     private GridView mGridView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_photo);
+    }
 
-        final String[] urls = initSampleData();
-        mGridView = (GridView) findViewById(R.id.gridview);
-        mAdapter = new GalleryPhotoAdapter(this, urls);
-        mGridView.setAdapter(mAdapter);
+    public interface APIService {
+        @GET("el_launcher/getPhotoPath.php")
+        Call<List<GalleryPhotoModel>> getMessage(@Query("reciever") String username);
+    }
 
-        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mGridView = (GridView)findViewById(R.id.photoView);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://dlab.sit.kmutt.ac.th/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+        final String reciever = sharedPreferences.getString("Username", "");
+
+        APIService photoService = retrofit.create(APIService.class);
+        Call<List<GalleryPhotoModel>> call = photoService.getMessage(reciever);
+        call.enqueue(new Callback<List<GalleryPhotoModel>>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onResponse(Call<List<GalleryPhotoModel>> call, Response<List<GalleryPhotoModel>> response) {
+                final ArrayList<GalleryPhotoModel> exPhoto = new ArrayList<GalleryPhotoModel>();
+                for(GalleryPhotoModel obj : response.body()){
+                    exPhoto.add(new GalleryPhotoModel(obj.getPhotoContentID(), obj.getPhotoTopic(), obj.getPhotoMessage(), obj.getPhotoPicturePath(), obj.getPhotoDateSend(), obj.getPhotoTimeSend()));
+                }
 
-                // custom dialog
-                final Dialog dialog = new Dialog(GalleryPhoto.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.photo_view);
+                for(int position=0; position<exPhoto.size(); position++){
+                    if(exPhoto.get(position).getPhotoPicturePath().equals("")){
+                        exPhoto.remove(position);
+                    }
+                }
 
-                // set the custom dialog components - text, image and button
-                ImageView image = (ImageView) dialog.findViewById(R.id.image);
-                Picasso.with(GalleryPhoto.this).load(urls[position]).into(image);
+                GalleryPhotoAdapter myAdapter = new GalleryPhotoAdapter(GalleryPhoto.this, exPhoto);
+                mGridView.setAdapter(myAdapter);
 
-                Button close = (Button) dialog.findViewById(R.id.btnClose);
-                // if button is clicked, close the custom dialog
-                close.setOnClickListener(new View.OnClickListener() {
+                mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // custom dialog
+                        final Dialog dialog = new Dialog(GalleryPhoto.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.gallery_photo_view);
+
+                        // set the custom dialog components - text, image and button
+                        ImageView image = (ImageView) dialog.findViewById(R.id.image);
+                        Picasso.with(GalleryPhoto.this).load("http://dlab.sit.kmutt.ac.th/stayintouch/WebApplication/examples/web/upload_file/"+exPhoto.get(position).getPhotoPicturePath()).into(image);
+
+                        Button close = (Button) dialog.findViewById(R.id.btnClose);
+                        // if button is clicked, close the custom dialog
+                        close.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                        dialog.show();
                     }
                 });
+            }
 
-                dialog.show();
+            @Override
+            public void onFailure(Call<List<GalleryPhotoModel>> call, Throwable t) {
+                System.out.println(t.getMessage());
             }
         });
     }
 
-    private String[] initSampleData() {
-        return new String[]{
-                "https://d13yacurqjgara.cloudfront.net/users/3460/screenshots/1628158/animal-stickers_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/14521/screenshots/1628431/designers_wanted_2_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/57127/screenshots/1628433/kickstarterproject_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/26059/screenshots/1628196/enter_1x.gif",
-                "https://d13yacurqjgara.cloudfront.net/users/32336/screenshots/1627983/dribbble3_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/254554/screenshots/1628567/20140703--satellit2_1x.gif",
-                "https://d13yacurqjgara.cloudfront.net/users/144388/screenshots/1628118/table-creative-dribbble_1x.gif",
-                "https://d13yacurqjgara.cloudfront.net/users/13307/screenshots/1628973/logotypes_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/45269/screenshots/1628472/workspace_1x.gif",
-                "https://d13yacurqjgara.cloudfront.net/users/124059/screenshots/1627992/search-filter_1x.gif",
-                "https://d13yacurqjgara.cloudfront.net/users/3375/screenshots/1628760/btt_cody_forever_1x.gif",
-                "https://d13yacurqjgara.cloudfront.net/users/79978/screenshots/1628721/koltozzbe.hu_2_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/51395/screenshots/1628377/mercedes_minisite_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/465131/screenshots/1628903/rpg_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/267247/screenshots/1628670/prayer_app_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/303896/screenshots/1628068/sitepreview_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/9964/screenshots/1628170/crank-it-up_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/155551/screenshots/1628228/icons_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/38311/screenshots/1628047/dfst-mg4_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/146798/screenshots/1628405/bubbly_birdy_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/607501/screenshots/1628351/logo_mockup_display__07_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/147435/screenshots/1628399/sufweb_teaser.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/111948/screenshots/1628041/rocket-pop_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/157303/screenshots/1628313/12_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/24711/screenshots/1628676/trivantis-city_2x_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/604158/screenshots/1627943/final_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/25416/screenshots/1628248/drib_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/292484/screenshots/1628461/designers_guide_to_startup_weekend-1_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/5976/screenshots/1628234/space_watchers_eye_planet_logo_design_symbol_by_alex_tass_teaser.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/271951/screenshots/1628799/thumb_1x.jpg",
-                "https://d13yacurqjgara.cloudfront.net/users/483231/screenshots/1628447/anicons1_1x.png",
-                "https://d13yacurqjgara.cloudfront.net/users/16540/screenshots/1628044/engage.independence.dribbb_1x.jpg"
-        };
-    }
+
 }

@@ -229,7 +229,8 @@ public class HomeActivity extends Activity {
     }
 
     public void showGallery(View v) {
-        Intent i = new Intent(this, GalleryActivity.class);
+//        Intent i = new Intent(this, GalleryActivity.class);
+        Intent i = new Intent(this, GalleryPhoto.class);
         startActivity(i);
     }
 

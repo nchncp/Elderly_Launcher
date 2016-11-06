@@ -29,8 +29,6 @@ import java.util.List;
  */
 public class MessagesUnread extends Activity {
     private ListView jsonListview;
-    private ArrayList<String> exData;
-    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +37,6 @@ public class MessagesUnread extends Activity {
     }
 
     public interface APIService {
-        //        @GET("stayintouch/WebApplication/examples/web/json/readMessage.php?accountid={accountid}")
-//        Call<List<MessagesModel>> getMessage(@Path("accountid") String accountid);
         @GET("el_launcher/unreadMessages2.php")
         Call<List<MessagesModel>> getMessage(@Query("reciever") String username);
     }

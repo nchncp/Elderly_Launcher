@@ -12,7 +12,7 @@
         android:layout_height="500dp"
         android:scaleType="centerInside"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="10dp" />
+        android:layout_margin="10dp" />
 
     <Button
         android:id="@+id/btnClose"
