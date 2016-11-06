@@ -1,8 +1,14 @@
 package com.launcher.elderlylauncher;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 /**
  * Created by nicha on 9/27/16.
@@ -12,15 +18,42 @@ public class GalleryPhoto extends Activity {
     private GalleryPhotoAdapter mAdapter;
     private GridView mGridView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_photo);
 
-        String[] urls = initSampleData();
+        final String[] urls = initSampleData();
         mGridView = (GridView) findViewById(R.id.gridview);
         mAdapter = new GalleryPhotoAdapter(this, urls);
         mGridView.setAdapter(mAdapter);
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                // custom dialog
+                final Dialog dialog = new Dialog(GalleryPhoto.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.photo_view);
+
+                // set the custom dialog components - text, image and button
+                ImageView image = (ImageView) dialog.findViewById(R.id.image);
+                image.setImageResource(R.drawable.elderly_launcher);
+
+                Button close = (Button) dialog.findViewById(R.id.btnClose);
+                // if button is clicked, close the custom dialog
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
     }
 
     private String[] initSampleData() {

@@ -44,4 +44,5 @@
     <string name="search">Search</string>
     <string name="selectFromContact">Select from Contact</string>
     <string name="sms_from">From :</string>
+    <string name="x">X</string>
 </resources>

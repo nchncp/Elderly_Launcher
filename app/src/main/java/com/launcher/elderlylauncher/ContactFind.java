@@ -86,7 +86,7 @@ public class ContactFind extends Activity {
                         cList[i]=lContact.getJSONObject(i).getString("Username")+" ("+lContact.getJSONObject(i).getString("FName")+")";
                         listContactBook[i]=new ContactBook(null, lContact.getJSONObject(i).getString("Username"), lContact.getJSONObject(i).getString("FName"), lContact.getJSONObject(i).getString("LName"), lContact.getJSONObject(i).getString("PhoneNum"), lContact.getJSONObject(i).getString("Email"));
                     }
-                    ArrayAdapter<String> cAdapter = new ArrayAdapter<String>(ContactFind.this, android.R.layout.simple_expandable_list_item_1, cList);
+                    ArrayAdapter<String> cAdapter = new ArrayAdapter<String>(ContactFind.this, R.layout.contacts_view, cList);
                     listContact.setAdapter(cAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
