@@ -36,13 +36,14 @@
     <string name="title">Title</string>
     <string name="message">Message</string>
     <string name="to">Username</string>
-    <string name="sms_to">To :</string>
+    <string name="sms_to">To : </string>
     <string name="send">SEND</string>
     <string name="reply">REPLY</string>
     <string name="okay">OKAY</string>
     <string name="find">Find People</string>
     <string name="search">Search</string>
     <string name="selectFromContact">Select from Contact</string>
-    <string name="sms_from">From :</string>
+    <string name="sms_from">From : </string>
     <string name="x">X</string>
+    <string name="view_message">View Message</string>
 </resources>

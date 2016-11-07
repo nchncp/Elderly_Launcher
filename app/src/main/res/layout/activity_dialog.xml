@@ -31,7 +31,7 @@
         android:padding="25sp"
         android:text="@string/sms_detail"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#212121"
+        android:textColor="#4d4d4d"
         android:textSize="40sp" />
 
     <LinearLayout

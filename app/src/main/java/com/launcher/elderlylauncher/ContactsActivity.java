@@ -29,11 +29,6 @@ public class ContactsActivity extends Activity {
     final List<ContactBook> listPhoneBook = new ArrayList<ContactBook>();
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        refreshContact();
-    }
-
-    @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_contacts);
@@ -41,8 +36,6 @@ public class ContactsActivity extends Activity {
         listView = (ListView)findViewById(R.id.listView1);
 
         findContact = (Button)findViewById(R.id.btnFindContact);
-
-        refreshContact();
 
         //Find People
         findContact.setOnClickListener(new View.OnClickListener() {
@@ -58,12 +51,15 @@ public class ContactsActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ContactsActivity.this, MessagesSend.class);
                 intent.putExtra("Reciever", listPhoneBook.get(position).getmUsername());
-                startActivityForResult(intent, 9998);
+                startActivityForResult(intent,9998);
             }
         });
     }
 
-    private void refreshContact() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         //Add Contact
 //        listPhoneBook.add(new ContactBook(BitmapFactory.decodeResource(getResources(), R.drawable.c_avatar0), "Daugther", "Varistha", "Thato", "098-765-4321", "daugther@gmail.com"));
 //        listPhoneBook.add(new ContactBook(BitmapFactory.decodeResource(getResources(), R.drawable.c_avatar1), "Son", "Anyakrit", "Thato", "098-765-4321", "son@gmail.com"));
@@ -107,5 +103,4 @@ public class ContactsActivity extends Activity {
         ContactBookAdapter adapter = new ContactBookAdapter(this, listPhoneBook);
         listView.setAdapter(adapter);
     }
-
 }
